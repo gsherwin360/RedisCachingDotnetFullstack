@@ -1,5 +1,6 @@
 ﻿using GameStore.API.Data;
 using GameStore.API.Mapping;
+using GameStore.API.Models.DTOs;
 using Microsoft.EntityFrameworkCore;
 
 namespace GameStore.API.Endpoints
@@ -11,13 +12,15 @@ namespace GameStore.API.Endpoints
             var group = app.MapGroup("/genres");
 
             // GET /genres
-            group.Map("/", async (GameStoreDbContext dbContext) =>
+            group.MapGet("/", async (GameStoreDbContext dbContext) =>
             {
                 return await dbContext.Genres
                     .Select(genre => genre.ToGenreSummaryDto())
                     .AsNoTracking()
                     .ToListAsync();
-            });
+            })
+			.Produces<List<GenreSummaryDTO>>(StatusCodes.Status200OK)
+			.Produces(StatusCodes.Status404NotFound);
 
             return group;
         } 
