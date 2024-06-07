@@ -13,7 +13,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "frontend", "frontend", "{DE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6ED07521-1897-41A5-9A28-E3DDCA416B6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.Frontend", "frontend\src\GameStore.Frontend\GameStore.Frontend.csproj", "{1C59517B-6892-4A38-9658-7BDFCE4A282E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameStore.Frontend", "frontend\src\GameStore.Frontend\GameStore.Frontend.csproj", "{1C59517B-6892-4A38-9658-7BDFCE4A282E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{12D53F00-24E4-426F-A5B6-1791EFD07DD2}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
