@@ -1,0 +1,29 @@
+GET http://localhost:5052/games
+
+###
+GET http://localhost:5052/games/1
+
+###
+POST http://localhost:5052/games
+Content-Type: application/json
+
+{
+    "name": "Minecraf11t",
+    "genreid": 4,
+    "price": 1229.99,
+    "releaseDate": "2011-11-18"
+}
+
+###
+PUT http://localhost:5052/games/1
+Content-Type: application/json
+
+{
+    "name": "Street Fighter II Turbo",
+    "genreId": 2,
+    "price": 9.99,
+    "releaseDate": "1991-02-01"
+}
+
+###
+DELETE http://localhost:5052/games/1
