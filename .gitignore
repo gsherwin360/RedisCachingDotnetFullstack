@@ -364,3 +364,9 @@ FodyWeavers.xsd
 
 # Ignore SQLite database files
 backend/src/GameStore.API/GameStore.db*
+
+# Ignore database migration files
+backend/src/GameStore.API/Data/Migrations
+
+# Ignore changes in the tools/data directory
+tools/data

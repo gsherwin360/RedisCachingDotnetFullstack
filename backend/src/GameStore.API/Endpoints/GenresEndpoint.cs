@@ -1,7 +1,5 @@
-﻿using GameStore.API.Data;
-using GameStore.API.Mapping;
-using GameStore.API.Models.DTOs;
-using Microsoft.EntityFrameworkCore;
+﻿using GameStore.API.Models.DTOs;
+using GameStore.API.Repositories;
 
 namespace GameStore.API.Endpoints
 {
@@ -12,17 +10,13 @@ namespace GameStore.API.Endpoints
             var group = app.MapGroup("/genres");
 
             // GET /genres
-            group.MapGet("/", async (GameStoreDbContext dbContext) =>
+            group.MapGet("/", async (IGenreRepository genreRepository) =>
             {
-                return await dbContext.Genres
-                    .Select(genre => genre.ToGenreSummaryDto())
-                    .AsNoTracking()
-                    .ToListAsync();
+                return await genreRepository.GetAllAsync();
             })
-			.Produces<List<GenreSummaryDTO>>(StatusCodes.Status200OK)
-			.Produces(StatusCodes.Status404NotFound);
+            .Produces<List<GenreSummaryDTO>>(StatusCodes.Status200OK);
 
             return group;
-        } 
-    }
+        }
+	}
 }

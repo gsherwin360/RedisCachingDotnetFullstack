@@ -16,12 +16,9 @@ namespace GameStore.API.Endpoints
             // GET /games
             group.MapGet("/", async (IGameRepository gameRepository) =>
             {
-                var games = await gameRepository.GetAllAsync();
-                return games.Select(game => game.ToGameSummaryDto()).ToList();
+                return await gameRepository.GetAllAsync();
             })
-            .Produces<List<GameSummaryDTO>>(StatusCodes.Status200OK)
-            .Produces<GameDetailsDTO>(StatusCodes.Status200OK)
-            .Produces(StatusCodes.Status404NotFound);
+            .Produces<List<GameSummaryDTO>>(StatusCodes.Status200OK);
 
             // GET /games/1
             group.MapGet("/{id}", async (int id, IGameRepository gameRepository) =>
@@ -30,7 +27,8 @@ namespace GameStore.API.Endpoints
                 return game is null ? Results.NotFound() : Results.Ok(game.ToGameDetailsDto());
             })
             .WithName(GetGameByIdEndpointName)
-            .Produces<GameDetailsDTO>(StatusCodes.Status201Created);
+            .Produces<GameDetailsDTO>(StatusCodes.Status200OK)
+			.Produces(StatusCodes.Status404NotFound);
 
             // POST /games
             group.MapPost("/", async (CreateGameModel newGame, IGameRepository gameRepository) =>
@@ -39,10 +37,11 @@ namespace GameStore.API.Endpoints
                 await gameRepository.AddAsync(game);
 
                 return Results.CreatedAtRoute(GetGameByIdEndpointName, new { id = game.Id }, game.ToGameDetailsDto());
-            });
+            })
+            .Produces<GameDetailsDTO>(StatusCodes.Status201Created);
 
-            // PUT /games
-            group.MapPut("/{id}", async (int id, UpdateGameModel updatedGame, IGameRepository gameRepository) =>
+			// PUT /games
+			group.MapPut("/{id}", async (int id, UpdateGameModel updatedGame, IGameRepository gameRepository) =>
             {
                 var existingGame = await gameRepository.GetByIdAsync(id);
 

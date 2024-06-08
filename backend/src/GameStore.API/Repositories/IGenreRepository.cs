@@ -1,9 +1,9 @@
-﻿using GameStore.API.Entities;
+﻿using GameStore.API.Models.DTOs;
 
 namespace GameStore.API.Repositories
 {
     public interface IGenreRepository
     {
-        Task<List<Genre>> GetAllAsync();
+        Task<List<GenreSummaryDTO>> GetAllAsync();
     }
 }

@@ -8,9 +8,9 @@ POST http://localhost:5052/games
 Content-Type: application/json
 
 {
-    "name": "Minecraf11t",
-    "genreid": 4,
-    "price": 1229.99,
+    "name": "Minecraft",
+    "genreid": 5,
+    "price": 19.99,
     "releaseDate": "2011-11-18"
 }
 

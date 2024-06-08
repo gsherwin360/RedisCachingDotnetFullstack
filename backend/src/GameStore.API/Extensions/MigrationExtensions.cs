@@ -5,6 +5,7 @@ namespace GameStore.API.Extensions
 {
     public static class MigrationExtensions
     {
+        // extension method for applying database migrations at runtime
         public static async Task MigrateDbAsync(this WebApplication app)
         {
             using var scope = app.Services.CreateScope();

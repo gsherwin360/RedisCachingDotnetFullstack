@@ -1,3 +1,4 @@
+using GameStore.API.Caching;
 using GameStore.API.Data;
 using GameStore.API.Endpoints;
 using GameStore.API.Extensions;
@@ -12,8 +13,15 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<GameStoreDbContext>(
     options => options.UseSqlite(builder.Configuration.GetConnectionString("GameStore")));
 
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+	options.Configuration = builder.Configuration.GetConnectionString("Redis");
+	options.InstanceName = builder.Configuration["Redis:InstanceName"];
+});
+
 builder.Services.AddScoped<IGameRepository, GameRepository>();
 builder.Services.AddScoped<IGenreRepository, GenreRepository>();
+builder.Services.AddSingleton<ICacheService, CacheService>();
 
 var app = builder.Build();
 

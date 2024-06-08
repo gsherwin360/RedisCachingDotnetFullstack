@@ -1,6 +1,5 @@
 ﻿using GameStore.API.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace GameStore.API.Data
 {
